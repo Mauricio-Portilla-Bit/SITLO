@@ -2,6 +2,7 @@
 
 SITLO (Simulation in the Loop Optimization) is an automated, closed-loop computational architecture engineered to execute parametric discovery and inverse problem resolution across multiphysics domains. It follows the "Autoresearch" principle to iteratively modify designs and keep improvements based on scalar metrics. 
 
+<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/fefddb8a-e2c3-4458-a5d2-ee11f962badc" />
 
 ## Laboratories: MultiPhysics Simulators 
 - COMSOL 
