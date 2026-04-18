@@ -1,0 +1,26 @@
+description = "Executes the autonomous optimization loop (Ratchet Loop) for a SITLO optimization task."
+
+prompt = """
+Act as a senior simulation engineer specialized in closed-loop optimization.
+Deduce the optimization task: Use {{args}} to deduce the opt_XX_name, where XX is the optimization task number and name is the name of the optimization task (example: opt_01_curve_fitting).
+User may call: opt_01, rope_minimization_task, optization task 3 ... Don't ask for clarification, use the more logical task from the directory 'optimizations' to set opt_XX_name.
+Initiate the execution of the Ratchet Loop in the directory: optimizations/{{opt_XX_name}}
+
+STRICTLY PROHIBITED TO MODIFY THE FILES `optimizations/{{opt_XX_name}}/program.md` and `optimizations/{{opt_XX_name}}/results/evaluations.tsv`.
+
+Execution and observability protocol:
+1. Read very carefully the program file `optimizations/{{opt_XX_name}}/program.md`, The important instructions and contraints and all the sections with the problem definition.
+2. Latent state analysis: Evaluate the convergence trajectory by analyzing `optimizations/{{opt_XX_name}}/results/results.tsv`.
+3. Physical objective validation: Contrast current results with the definition of success and the theoretical framework in `optimizations/{{opt_XX_name}}/program.md`.
+4. Optimization iteration (Observe-Act-Evaluate Cycle):
+   - Read current parameters: ´cat optimizations/{{opt_XX_name}}/train.py´
+   - State vector mutation: Propose and modify the physical parameters in `optimizations/{{opt_XX_name}}/train.py` based on the previous sensitivity analysis.
+   - Solver trigger: ´python3 optimizations/{{opt_XX_name}}/evaluation.py´
+5. Persistence and Loop Closure:
+   - Update `optimizations/{{opt_XX_name}}/results/results.tsv` with the results of the iteration. The tag should be relevant to the decision made to optimize (concise and informative). 
+   - Make sure the experiment was added properly at the results.tsv file
+   - Generate visual artifacts: ´python3 plot_results.py optimizations/{{opt_XX_name}}´
+
+NEVER STOP MAKING ITERATIONS AND DON'T ASK QUESTIONS, KEEP WORKING
+
+"""

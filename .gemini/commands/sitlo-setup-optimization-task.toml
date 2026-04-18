@@ -1,0 +1,18 @@
+description = "Initializes a new Optimization setup within the SITLO ecosystem."
+
+prompt = """
+Act as a senior simulation engineer.
+Initialize the new SITLO Optimization: Use {{args}} to generate a name for the optimization following the opt_XX_name pattern, where XX is the optimization number and name is the optimization name deduced from {{args}} (example: opt_01_curve_fitting).
+
+Mandatory steps:
+1. Create structure: optimizations/{{opt_XX_name}}/results 
+2. Create baseline results: !{ printf "iteration\thypothesis\tmetric\ttag\n" } in the generated generated folder opt_XX_name
+3. Prepare baseline assets:
+   - program.md: Copy the file templates/program.md to optimizations/{{opt_XX_name}}/program.md (defining the objective and following the steps of the template to modify it). LEAVE THE IMPORTANT INSTRUCTIONS AND CONSTRAINTS AS IT IS IN THE TEMPLATE
+   - evaluation.py: Create the file optimizations/{{opt_XX_name}}/evaluation.py based on the metrics and parameters defined in the table of optimizations/{{opt_XX_name}}/program.md. This file should only contain the evaluation logic given the constraints defined in program.md.
+   - train.py : Create the file optimizations/{{opt_XX_name}}/train.py based on the objectives. This file is the only editable asset that will be modified by the optimization loop (and results.tsv). Here should be the logic (if the problem ask for a curve, the output should be a curve, if the problem ask for a single number, the output should be a single number)
+4. Define the physics in evaluation.py and establish the baseline (Iteration 0) in results.tsv.
+
+STRICTLY PROHIBITED TO MODIFY THE FILES `optimizations/{{opt_XX_name}}/program.md` and `optimizations/{{opt_XX_name}}/results/evaluations.tsv`.
+
+"""
