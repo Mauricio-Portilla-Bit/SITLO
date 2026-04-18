@@ -1,0 +1,7 @@
+iteration	hypothesis	metric	tag
+0	initial_baseline	0.8725675188717591	initial_state
+1	parameters:a1=-0.2,a2=-0.8	0.8292303418596185	previous_best
+2	parameters:a1=-0.3,a2=-0.7	0.8099361941108655	new_improvement
+3	parameters:a1=-0.4,a2=-0.6	0.7887028375268727	improvement
+4	parameters:a1=-0.5,a2=-0.5	0.7754441185307127	best_so_far
+5	parameters:a1=-0.7,a2=-0.3	0.7191968468264452	improvement
